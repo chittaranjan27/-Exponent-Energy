@@ -106,6 +106,6 @@ def render_station_view(result: ScheduleResult, config: ScenarioConfig):
             return [""] * len(row)
 
         styled = df_queue.style.apply(highlight_wait, axis=1)
-        st.dataframe(df_queue, width="stretch", hide_index=True)
+        st.dataframe(df_queue, use_container_width=True, hide_index=True)
 
         st.markdown("")  # spacer

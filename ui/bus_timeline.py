@@ -103,7 +103,7 @@ def render_bus_timelines(result: ScheduleResult, config: ScenarioConfig):
             "Trip Time": _format_duration(tl.total_trip_time),
         })
     df_summary = pd.DataFrame(summary_data)
-    st.dataframe(df_summary, width="stretch", hide_index=True)
+    st.dataframe(df_summary, use_container_width=True, hide_index=True)
 
     # ── Detailed per-bus timelines ──
     st.markdown("### 📋 Detailed Timelines")
@@ -201,4 +201,4 @@ def render_bus_timelines(result: ScheduleResult, config: ScenarioConfig):
             })
 
             df_steps = pd.DataFrame(steps)
-            st.dataframe(df_steps, width="stretch", hide_index=True)
+            st.dataframe(df_steps, use_container_width=True, hide_index=True)

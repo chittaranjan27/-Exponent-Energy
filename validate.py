@@ -104,7 +104,7 @@ def main():
             if errors:
                 all_pass = False
                 for err in errors:
-                    print(f"  ❌ {err}")
+                    print(f"  [ERROR] {err}")
             else:
                 # Print summary stats
                 config = load_scenario(path)
@@ -114,29 +114,29 @@ def main():
                 max_wait = max(t.total_wait for t in result.timelines)
                 avg_trip = sum(t.total_trip_time for t in result.timelines) / total_buses
 
-                print(f"  ✅ All checks passed!")
-                print(f"  📊 Buses: {total_buses}")
-                print(f"  ⏱  Avg wait: {avg_wait:.1f} min | Max wait: {max_wait:.1f} min")
-                print(f"  🚌 Avg trip: {avg_trip:.0f} min")
+                print(f"  [SUCCESS] All checks passed!")
+                print(f"  [STATS] Buses: {total_buses}")
+                print(f"  [WAIT] Avg wait: {avg_wait:.1f} min | Max wait: {max_wait:.1f} min")
+                print(f"  [TRIP] Avg trip: {avg_trip:.0f} min")
 
                 # Show charging plan distribution
                 plan_counts = {}
                 for tl in result.timelines:
-                    plan_key = " → ".join(tl.charge_plan.stations)
+                    plan_key = " -> ".join(tl.charge_plan.stations)
                     plan_counts[plan_key] = plan_counts.get(plan_key, 0) + 1
-                print(f"  📋 Charging plans used:")
+                print(f"  [PLANS] Charging plans used:")
                 for plan, count in sorted(plan_counts.items()):
                     print(f"     {plan}: {count} buses")
 
         except Exception as e:
             all_pass = False
-            print(f"  ❌ Exception: {e}")
+            print(f"  [ERROR] Exception: {e}")
 
     print(f"\n{'='*60}")
     if all_pass:
-        print("🎉 All scenarios validated successfully!")
+        print("SUCCESS: All scenarios validated successfully!")
     else:
-        print("⚠️  Some scenarios have issues — see above.")
+        print("WARNING: Some scenarios have issues - see above.")
     print(f"{'='*60}")
 
     sys.exit(0 if all_pass else 1)

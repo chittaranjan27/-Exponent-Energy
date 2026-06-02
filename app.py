@@ -39,13 +39,23 @@ st.set_page_config(
 st.markdown("""
 <style>
     /* Header styling */
-    .main-header {
+    .main-header-container {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 0.2rem;
+    }
+    .main-header-emoji {
+        font-size: 2.2rem;
+    }
+    .main-header-text {
         font-size: 2.2rem;
         font-weight: 700;
         background: linear-gradient(135deg, #3B82F6, #8B5CF6);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.2rem;
+        line-height: 1.3;
+        display: inline-block;
     }
     .sub-header {
         font-size: 1rem;
@@ -75,9 +85,9 @@ st.markdown("""
         font-size: 0.95rem;
     }
 
-    /* Remove top padding */
+    /* Adjust top padding to prevent clipping under Streamlit's header */
     .block-container {
-        padding-top: 2rem;
+        padding-top: 4.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -87,7 +97,13 @@ st.markdown("""
 #  Header
 # ──────────────────────────────────────────────
 
-st.markdown('<p class="main-header">🚌 Bus Charging Scheduler</p>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="main-header-container">'
+    '<span class="main-header-emoji">🚌</span>'
+    '<span class="main-header-text">Bus Charging Scheduler</span>'
+    '</div>',
+    unsafe_allow_html=True,
+)
 st.markdown(
     '<p class="sub-header">'
     'Electric bus charging optimization for the Bengaluru–Kochi corridor'

@@ -43,7 +43,7 @@ def render_scenario_view(config: ScenarioConfig):
             })
 
         df_route = pd.DataFrame(route_data)
-        st.dataframe(df_route, width="stretch", hide_index=True)
+        st.dataframe(df_route, use_container_width=True, hide_index=True)
 
         # ── Stations ──
         st.markdown("### 🔌 Charging Stations")
@@ -54,7 +54,7 @@ def render_scenario_view(config: ScenarioConfig):
                 "Chargers": cfg.chargers,
             })
         df_stations = pd.DataFrame(station_data)
-        st.dataframe(df_stations, width="stretch", hide_index=True)
+        st.dataframe(df_stations, use_container_width=True, hide_index=True)
 
     with col2:
         # ── Fleet Constants ──
@@ -75,7 +75,7 @@ def render_scenario_view(config: ScenarioConfig):
             label = name.replace("_", " ").title()
             weight_data.append({"Rule": label, "Weight": val})
         df_weights = pd.DataFrame(weight_data)
-        st.dataframe(df_weights, width="stretch", hide_index=True)
+        st.dataframe(df_weights, use_container_width=True, hide_index=True)
 
     # ── Bus Schedule ──
     st.markdown("### 🚌 Departure Schedule")
@@ -100,8 +100,8 @@ def render_scenario_view(config: ScenarioConfig):
     with col_bk:
         st.markdown(f"**Bengaluru → Kochi** ({len(bk_buses)} buses)")
         if not bk_buses.empty:
-            st.dataframe(bk_buses, width="stretch", hide_index=True)
+            st.dataframe(bk_buses, use_container_width=True, hide_index=True)
     with col_kb:
         st.markdown(f"**Kochi → Bengaluru** ({len(kb_buses)} buses)")
         if not kb_buses.empty:
-            st.dataframe(kb_buses, width="stretch", hide_index=True)
+            st.dataframe(kb_buses, use_container_width=True, hide_index=True)
